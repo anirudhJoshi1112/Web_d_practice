@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(89, 0, 255);
+}
+#main{
+    height: 350px;
+    width: 250px;
+    background-color: #fff;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+#main img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#main i{
+    color: #fff;
+    font-size: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    opacity: 0; 
+    /* to make things transparent */
+    transition: transform ease 0.5s;
+}

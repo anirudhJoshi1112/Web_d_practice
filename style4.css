@@ -1,0 +1,52 @@
+/* style 4 file is only for basics */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#main{
+    height: 300px;
+    width: 300px;
+    /* padding-left: 110px; */
+    background-color: red;  
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+h3{
+    text-align: center;
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+#ror{
+    height: 150px;
+    width: 150px;
+    /* padding-right: 40px; */
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#ror1{
+    height: 100px;
+    width: 100px;
+    background-color: #bbbbbb;
+}
+#ror2{
+    height: 300px;
+    width: 300px;
+    background-color: red;
+    /* margin-left: 640px;
+    margin-top: 400px; */
+}
