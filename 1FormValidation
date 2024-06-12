@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-group .error {
+            color: red;
+            font-size: 14px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+                <div class="error" id="firstNameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+                <div class="error" id="lastNameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number:</label>
+                <input type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" required>
+                <div class="error" id="mobileNumberError"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div class="error" id="passwordError"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <div class="error" id="confirmPasswordError"></div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                <div class="error" id="addressError"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error" id="emailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="portfolio">Other Portfolio:</label>
+                <input type="url" id="portfolio" name="portfolio">
+                <div class="error" id="portfolioError"></div>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            let valid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(e => e.textContent = '');
+
+            // First Name validation
+            const firstName = document.getElementById('firstName').value;
+            if (!firstName) {
+                valid = false;
+                document.getElementById('firstNameError').textContent = 'First Name is required.';
+            }
+
+            // Last Name validation
+            const lastName = document.getElementById('lastName').value;
+            if (!lastName) {
+                valid = false;
+                document.getElementById('lastNameError').textContent = 'Last Name is required.';
+            }
+
+            // Mobile Number validation
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            if (!/^\d{10}$/.test(mobileNumber)) {
+                valid = false;
+                document.getElementById('mobileNumberError').textContent = 'Enter a valid 10 digit mobile number.';
+            }
+
+            // Password validation
+            const password = document.getElementById('password').value;
+            if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}/.test(password)) {
+                valid = false;
+                document.getElementById('passwordError').textContent = 'Password must be at least 8 characters long and include a number, an uppercase letter, a lowercase letter, and a special character.';
+            }
+
+            // Confirm Password validation
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                valid = false;
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+            }
+
+            // Address validation
+            const address = document.getElementById('address').value;
+            if (!address) {
+                valid = false;
+                document.getElementById('addressError').textContent = 'Address is required.';
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value;
+            if (!email) {
+                valid = false;
+                document.getElementById('emailError').textContent = 'Email is required.';
+            }
+
+            // Other Portfolio validation
+            const portfolio = document.getElementById('portfolio').value;
+            if (portfolio && !/^https?:\/\/.*/.test(portfolio)) {
+                valid = false;
+                document.getElementById('portfolioError').textContent = 'Enter a valid URL.';
+            }
+
+            if (!valid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
